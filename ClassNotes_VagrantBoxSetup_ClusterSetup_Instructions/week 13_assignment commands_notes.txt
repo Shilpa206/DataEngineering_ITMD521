@@ -1,0 +1,37 @@
+conf.set('spark.hadoop.fs.s3a.aws.credentials.provider', 'org.apache.hadoop.fs.s3a.AnonymousAWSCredentialsProvider')
+
+Should now read this...
+
+conf.set('spark.hadoop.fs.s3a.aws.credentials.provider', 'org.apache.hadoop.fs.s3a.SimpleAWSCredentialsProvider')
+
+min io credentials: (acesskey and secrest key only username and pd)
+nannadevara 
+4956cfb4-eb0a-11ee-b090-a7a1799705ec
+
+
+execute these below nohup spark submit commands from spark edge cluster from nannadevarra direcory..not the home direcotory
+
+nohup spark-submit --master spark://sm.service.consul:7077 \
+	--packages org.apache.hadoop:hadoop-aws:3.2.3 \
+	--driver-memory 2G \
+	--executor-memory 6G \
+	--executor-cores 2 \
+	--total-executor-cores 24 \
+	minio_part_2.py > part_2_run.txt &
+
+
+nohup spark-submit --master spark://sm.service.consul:7077 \
+	--packages org.apache.hadoop:hadoop-aws:3.2.3 \
+	--driver-memory 2G \
+	--executor-memory 6G \
+	--executor-cores 2 \
+	--total-executor-cores 24 \
+	minio_part_3.py > part_3_run.txt &
+
+
+
+
+to check log:
+tail -f part_2_run.txt
+
+tail -f part_3_run.txt
